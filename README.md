@@ -6,17 +6,17 @@ PACT_FOLDER=<absolute path> ./go.sh
 
 ## Project structure
 
-go.sh                        # Scripts to run the tests
-├── acceptance               # Acceptance Tests with Playwright/Python
-│   ├── test_cases           # Test cases derived from AC's 
-│   ├── dsl                  # What
-│   ├── drivers              # How
-├── certifier                # Ruby/Rails app
-├── mockserver               # 3rd party API stub
-├── wallet                   # Ruby/Sinatra app
-├── web-api                  # Java BFF
-├── web-ui                   # React UI
-└── ...
+    go.sh                        # Scripts to run the tests
+    ├── acceptance               # Acceptance Tests with Playwright/Python
+    │   ├── test_cases           # Test cases derived from AC's
+    │   ├── dsl                  # What
+    │   ├── drivers              # How
+    ├── certifier                # Ruby/Rails app
+    ├── mockserver               # 3rd party API stub
+    ├── wallet                   # Ruby/Sinatra app
+    ├── web-api                  # Java BFF
+    ├── web-ui                   # React UI
+    └── ...
 
 ## Dependencies
 

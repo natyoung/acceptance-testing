@@ -1,0 +1,73 @@
+Documentation:
+  Enabled: false
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/RedundantFetchBlock:
+  Enabled: true
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+Style/RedundantRegexpEscape:
+  Enabled: true
+
+Style/SlicingWithRange:
+  Enabled: true
+
+Metrics/MethodLength:
+  Exclude:
+    - "test/**/*"
+    - "cdc/**/*"
+    - "app/data/*"
+    - "lib/users/data/*"
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - "app/*"
+    - 'db/migrate/**/*'
+    - 'Rakefile'
+
+Metrics/AbcSize:
+  Exclude:
+    - "test/**/*"
+    - "cdc/**/*"
+    - "lib/data/data_store.rb"
+    - "app/application.rb"
+
+Metrics/ParameterLists:
+  Enabled: false
+
+AllCops:
+  NewCops: enable

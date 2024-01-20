@@ -1,0 +1,207 @@
+{
+  "consumer": {
+    "name": "web-ui"
+  },
+  "interactions": [
+    {
+      "description": "a balance update",
+      "providerStates": [
+        {
+          "name": "I have a user_id and wallet",
+          "params": {
+            "walletIdWithBalance100": "ea4ceefe-cfe6-49e8-a36d-1a889c780bb4"
+          }
+        }
+      ],
+      "request": {
+        "body": {
+          "amount": 900
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "method": "PATCH",
+        "path": "/wallets/ea4ceefe-cfe6-49e8-a36d-1a889c780bb4"
+      },
+      "response": {
+        "body": {
+          "balance": 1000
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "a query by user_id",
+      "providerStates": [
+        {
+          "name": "I have a user_id and wallet",
+          "params": {
+            "userIdWithBalance100": "ea4ceefe-cfe6-49e8-a36d-1a889c780bb4"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/wallets/ea4ceefe-cfe6-49e8-a36d-1a889c780bb4"
+      },
+      "response": {
+        "body": {
+          "balance": 100,
+          "id": "ea4ceefe-cfe6-49e8-a36d-1a889c780bb4"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "a payment request",
+      "providerStates": [
+        {
+          "name": "I have an non-existent user_id",
+          "params": {
+            "nonExistentWalletId": "0"
+          }
+        }
+      ],
+      "request": {
+        "body": {
+          "amount": 100
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "method": "PATCH",
+        "path": "/wallets/0"
+      },
+      "response": {
+        "status": 404
+      }
+    },
+    {
+      "description": "a query for the price",
+      "providerStates": [
+        {
+          "name": "There is a certification price"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/certifications/price"
+      },
+      "response": {
+        "body": {
+          "price": 100
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "a certification request",
+      "providerStates": [
+        {
+          "name": "There is a certifications endpoint",
+          "params": {
+            "walletIdWithBalance100": "ea4ceefe-cfe6-49e8-a36d-1a889c780bb4"
+          }
+        }
+      ],
+      "request": {
+        "body": {
+          "name": "scrumfall master name",
+          "user_id": "ea4ceefe-cfe6-49e8-a36d-1a889c780bb4"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "method": "POST",
+        "path": "/certifications"
+      },
+      "response": {
+        "body": {
+          "certificateId": "528db56a-6f84-481d-986f-069e58ea0d4a",
+          "certifiedName": "scrumfall master name",
+          "dateCertified": "01/01/1876"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 201
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "12.1.2"
+    },
+    "pactRust": {
+      "ffi": "0.4.9",
+      "models": "1.1.11"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "web-api"
+  }
+}

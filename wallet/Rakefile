@@ -1,0 +1,26 @@
+# frozen_string_literal: true
+
+require 'pact/tasks'
+require 'rake/testtask'
+require 'rom/sql/rake_task'
+require 'rom'
+
+Rake::TestTask.new do |t|
+  t.test_files = FileList['test/**/*_test.rb']
+end
+desc 'Run tests'
+
+Rake::TestTask.new do |t|
+  t.name = 'test:cdc'
+  t.test_files = FileList['cdc/service_consumers/*_test.rb']
+end
+
+namespace :db do
+  task :setup do
+    configuration = ROM::Configuration.new(:sql, 'sqlite:db/test.sqlite')
+    ROM::SQL::RakeSupport.env = ROM.container(configuration)
+    configuration.gateways[:default].use_logger(Logger.new($stdout))
+  end
+end
+
+task default: :test

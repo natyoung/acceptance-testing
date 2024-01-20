@@ -1,0 +1,44 @@
+import '@testing-library/jest-dom'
+import {faker} from "@faker-js/faker";
+import {fireEvent, render, screen, waitFor} from '@testing-library/react'
+import Certification from '@/app/certification/page'
+import CertificationService from "@/app/lib/CertificationService";
+
+describe('<Certification/>', () => {
+  it('initially renders the form', async () => {
+    await waitFor(() => {
+      render(<Certification/>);
+    })
+
+    const buyButton = screen.getByTestId('buy')
+    expect(buyButton).toBeInTheDocument()
+  });
+
+  it('buy success renders the certificate', async () => {
+    const certificateId = faker.string.uuid();
+    const certifiedName = faker.person.fullName();
+    const dateCertified = faker.date.anytime().toDateString();
+    const serviceMock = jest.spyOn(CertificationService.prototype, 'buy')
+      .mockImplementation(() => Promise.resolve(
+        {
+          data: {
+            certificateId: certificateId,
+            certifiedName: certifiedName,
+            dateCertified: dateCertified,
+          },
+          status: 201
+        }
+      ));
+
+    await waitFor(() => {
+      render(<Certification/>);
+      fireEvent.click(screen.getByTestId('buy'))
+    })
+
+    expect(serviceMock).toHaveBeenCalledTimes(1);
+    expect(screen.getByTestId('certificate')).toBeInTheDocument()
+    expect(screen.getByTestId('certificate-id').textContent).toEqual(certificateId);
+    expect(screen.getByTestId('certified-name').textContent).toEqual(certifiedName);
+    expect(screen.getByTestId('date-certified').textContent).toEqual(dateCertified);
+  });
+});

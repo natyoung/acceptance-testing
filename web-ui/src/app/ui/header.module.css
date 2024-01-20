@@ -1,0 +1,9 @@
+.heroWrapper {
+    position: relative;
+    width: 100vw;
+    height: 50vh;
+}
+
+.imageWrapper {
+    z-index: -1;
+}

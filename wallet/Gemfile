@@ -1,0 +1,32 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org' do
+  gem 'dotenv'
+  gem 'dry-auto_inject'
+  gem 'dry-system'
+  gem 'htmlentities'
+  gem 'httparty'
+  gem 'lotus-validations'
+  gem 'puma'
+  gem 'rack'
+  gem 'rack-test'
+  gem 'rake'
+  gem 'require_all'
+  gem 'rom'
+  gem 'rom-repository'
+  gem 'rom-sql'
+  gem 'sinatra'
+  gem 'sinatra-contrib'
+  gem 'sqlite3'
+  gem 'zeitwerk'
+
+  group :test, :functional do
+    gem 'faker'
+    gem 'minitest'
+    gem 'mocha'
+    gem 'pact-consumer-minitest'
+    gem 'rubocop'
+    gem 'timecop'
+    gem 'webmock'
+  end
+end

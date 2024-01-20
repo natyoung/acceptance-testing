@@ -1,0 +1,19 @@
+ [
+    {
+      "httpRequest" : {
+        "method" : "POST",
+         "path" : "/v1/payments/{userId}",
+         "pathParameters": {
+            "userId": ["[A-Za-z0-9\\-]+"]
+          },
+         "body" : {
+          "amount" : "${json-unit.any-number}"
+         }
+    },
+      "httpResponse" : {
+        "body" : "{}",
+        "statusCode": 200
+      }
+    }
+  ]
+ 

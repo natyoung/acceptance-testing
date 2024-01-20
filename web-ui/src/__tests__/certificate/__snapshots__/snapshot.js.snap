@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders certification page unchanged 1`] = `
+<div>
+  <main
+    class="flex min-h-screen flex-col items-center justify-between"
+  >
+    <div
+      class="mb-32 grid text-center lg:max-w-10xl lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-center"
+    >
+      <div
+        class="heroWrapper"
+      >
+        <div
+          class="imageWrapper"
+        />
+      </div>
+      <form
+        class="bg-dark shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      >
+        <h1
+          class="text-4xl"
+        >
+          Certification
+        </h1>
+        0
+        <div
+          class="mb-4"
+        >
+          <label
+            class="block text-blue-500 text-sm font-bold mb-2"
+            for="name"
+          >
+            Scrumfall Master's name:
+          </label>
+          <input
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            data-testid="name"
+            name="name"
+            type="text"
+          />
+        </div>
+        <button
+          class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          data-testid="buy"
+          type="submit"
+        >
+          Buy
+        </button>
+      </form>
+    </div>
+  </main>
+</div>
+`;

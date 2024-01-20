@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders wallet page unchanged 1`] = `
+<div>
+  <main
+    class="flex min-h-screen flex-col items-center justify-between"
+  >
+    <div
+      class="heroWrapper"
+    >
+      <div
+        class="imageWrapper"
+      />
+    </div>
+    <div
+      class="mb-32 grid text-center lg:max-w-10xl lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-center"
+    >
+      <h1
+        class="text-4xl"
+      >
+        Wallet
+      </h1>
+      <form
+        class="bg-dark shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      >
+        <div
+          class="mb-4"
+        >
+          <label
+            class="block text-blue-500  text-sm font-bold mb-2"
+            for="amount"
+          >
+            Story Points delivered to the dev environment:
+          </label>
+          <input
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            data-testid="amount"
+            name="amount"
+            type="text"
+          />
+        </div>
+        <div
+          class="items-center justify-between mb-4"
+        >
+          <button
+            class="bg-blue-800 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            data-testid="submit-amount"
+            type="submit"
+          >
+            Add Points
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+</div>
+`;

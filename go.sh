@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+if [[ -z "${PACT_FOLDER}" ]]; then
+  echo "PACT_FOLDER is unset"; exit 1;
+else
+  PACT_FOLDER="${PACT_FOLDER}"
+fi
+
 d_check() {
   command -v python3 >/dev/null 2>&1 || { echo >&2 "python3 was not found.  Aborting."; exit 1; }
   command -v pip3 >/dev/null 2>&1 || { echo >&2 "pip3 was not found.  Aborting."; exit 1; }
@@ -79,6 +85,11 @@ generate_pacts()
   cd ..
 }
 
+run_pact_stubs()
+{
+  docker run --rm -t --name pact-stubs -p 8080:8080 -v "${PACT_FOLDER}:/app/pacts" pactfoundation/pact-stub-server -p 8080 -d pacts --cors &
+}
+
 test()
 {
 cat <<EOF
@@ -94,7 +105,7 @@ cat <<EOF
 start pact-stubs
 -----------------
 EOF
-  docker run --rm -t --name pact-stubs -p 8080:8080 -v "$(pwd)/pacts/:/app/pacts" pactfoundation/pact-stub-server -p 8080 -d pacts --cors &
+  run_pact_stubs
 cat <<EOF
 
 -----------------
@@ -160,6 +171,9 @@ test
 ;;
 payment_stub)
 payment_stub
+;;
+run_pact_stubs)
+run_pact_stubs
 ;;
 generate_pacts)
 generate_pacts

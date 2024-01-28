@@ -16,3 +16,4 @@ app/log/*
 terraform.tfstate*
 infrastructure/*
 log
+reports

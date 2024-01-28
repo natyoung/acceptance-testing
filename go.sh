@@ -150,7 +150,7 @@ cat <<EOF
     Usage: PACT_FOLDER=<path> $0 [option]
 
     setup               setup
-    generate_pacts      generate pacts
+    generate_pacts      generate the contracts to PACT_FOLDER
     test                run all tests
 
 EOF

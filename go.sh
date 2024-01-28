@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
-if [[ -z "${PACT_FOLDER}" ]]; then
-  echo "PACT_FOLDER is unset"; exit 1;
-else
-  PACT_FOLDER="${PACT_FOLDER}"
-fi
-
 d_check() {
+  if [[ -z "${PACT_FOLDER}" ]]; then
+    echo "PACT_FOLDER is unset"; exit 1;
+  else
+    PACT_FOLDER="${PACT_FOLDER}"
+  fi
   command -v python3 >/dev/null 2>&1 || { echo >&2 "python3 was not found.  Aborting."; exit 1; }
   command -v pip3 >/dev/null 2>&1 || { echo >&2 "pip3 was not found.  Aborting."; exit 1; }
   command -v yarn >/dev/null 2>&1 || { echo >&2 "yarn was not found.  Aborting."; exit 1; }
@@ -90,8 +89,18 @@ run_pact_stubs()
   docker run --rm -t --name pact-stubs -p 8080:8080 -v "${PACT_FOLDER}:/app/pacts" pactfoundation/pact-stub-server -p 8080 -d pacts --cors &
 }
 
+run()
+{
+  d_check
+  generate_pacts
+  run_pact_stubs
+  cd ./web-ui
+  PORT=3000 ../waitfor.sh http://localhost:8080/wallets/ea4ceefe-cfe6-49e8-a36d-1a889c780bb4 -t 20 -- yarn run dev
+}
+
 test()
 {
+d_check
 cat <<EOF
 
 -----------------
@@ -177,6 +186,9 @@ run_pact_stubs
 ;;
 generate_pacts)
 generate_pacts
+;;
+run)
+run
 ;;
 *)
 print_usage

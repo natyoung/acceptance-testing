@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
+if [[ -z "${PACT_FOLDER}" ]]; then
+  export PACT_FOLDER="/Users/natyoung/dev/projects/testing-1/pacts"
+else
+  PACT_FOLDER="${PACT_FOLDER}"
+fi
+
 d_check() {
-  if [[ -z "${PACT_FOLDER}" ]]; then
-    echo "PACT_FOLDER is unset"; exit 1;
-  else
-    PACT_FOLDER="${PACT_FOLDER}"
-  fi
   command -v python3 >/dev/null 2>&1 || { echo >&2 "python3 was not found.  Aborting."; exit 1; }
   command -v pip3 >/dev/null 2>&1 || { echo >&2 "pip3 was not found.  Aborting."; exit 1; }
   command -v yarn >/dev/null 2>&1 || { echo >&2 "yarn was not found.  Aborting."; exit 1; }
@@ -42,7 +43,7 @@ test_client()
   ../waitfor.sh http://localhost:3000 -t 20 -- echo "client started"
   ../waitfor.sh http://localhost:8080/wallets/ea4ceefe-cfe6-49e8-a36d-1a889c780bb4 -t 20 -- echo "stubs started"
   cd ../acceptance 
-  pytest --browser firefox
+  pytest
   cd ..
   kill ${client_pid}
 }
@@ -58,6 +59,7 @@ test_wallet()
 test_certifier()
 {
   cd certifier
+  bundle exec rake db:migrate
   bundle exec rake test
   APP_ENV=test PACT_DO_NOT_TRACK=true bundle exec rake pact:verify
   cd ..

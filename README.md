@@ -2,6 +2,9 @@
 
 ```bash
 PACT_FOLDER=<absolute path> ./go.sh setup
+```
+
+```bash
 PACT_FOLDER=<absolute path> ./go.sh test
 ```
 

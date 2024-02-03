@@ -10,10 +10,12 @@ export default class CertificationService {
   async buy(userId: string, name: string): Promise<AxiosResponse> {
     return axios.post<AxiosResponse>(`${this.host}/certifications`,
       {
-        user_id: userId,
+        userId: userId,
         name: name
       })
-      .then(res => res)
+      .then(res => {
+        return res;
+      })
   }
 
   async getPrice(): Promise<AxiosResponse> {

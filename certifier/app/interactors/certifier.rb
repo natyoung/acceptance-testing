@@ -7,7 +7,7 @@ class Certifier
   def call
     begin
       cert = Certification.create(
-        user_id: context.user_id,
+        user_id: context.userId,
         name: context.name,
         certification_id: SecureRandom.uuid,
         date_certified: DateTime.new.to_date
@@ -17,7 +17,7 @@ class Certifier
         context.certification_id = cert.certification_id
         context.certified_name = cert.name
         context.date = cert.date_certified
-        context.user_id = cert.user_id
+        context.userId = cert.user_id
       else
         raise StandardError.new("Error creating certificate.")
       end

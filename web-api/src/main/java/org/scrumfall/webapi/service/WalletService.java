@@ -27,7 +27,7 @@ public class WalletService {
     private final HttpClient httpClient;
 
     @Setter
-    private String host = "http://localhost:8081";
+    private String host = System.getenv("HOST_WALLET");
 
     @Autowired
     public WalletService(HttpClient httpClient) {

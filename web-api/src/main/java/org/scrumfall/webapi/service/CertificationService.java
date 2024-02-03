@@ -23,8 +23,9 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 public class CertificationService {
     private static final Gson GSON = new Gson();
     private final HttpClient httpClient;
+
     @Setter
-    private String host = "http://localhost:8082";
+    private String host = System.getenv("HOST_CERTIFIER");
 
     @Autowired
     public CertificationService(HttpClient httpClient) {
@@ -35,7 +36,7 @@ public class CertificationService {
         try {
             final URI uri = new URI(host + "/certifications");
             final JsonObject requestBody = new JsonObject();
-            requestBody.addProperty("userId", userId);
+            requestBody.addProperty("user_id", userId);
             requestBody.addProperty("name", name);
             final HttpRequest request = HttpRequest.newBuilder()
                     .uri(uri)

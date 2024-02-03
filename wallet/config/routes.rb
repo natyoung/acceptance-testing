@@ -6,6 +6,11 @@ require 'sinatra/json'
 require_relative '../lib/services/wallet'
 
 class ApplicationRoutes < Sinatra::Base
+
+  configure do
+    enable :cross_origin
+  end
+
   def initialize
     super
     @service = Application['services.wallet']

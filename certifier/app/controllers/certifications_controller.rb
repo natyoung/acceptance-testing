@@ -4,9 +4,10 @@ class CertificationsController < ApplicationController
 
     if result.success?
       render json: {
-        certificateId: result.certification_id,
-        certifiedName: result.certified_name,
-        dateCertified: result.date,
+        id: result.certification_id,
+        name: result.certified_name,
+        date: result.date.to_s,
+        userId: result.user_id,
       }, status: :ok
     else
       render json: { error: result.message }, status: :unprocessable_entity
@@ -22,6 +23,6 @@ class CertificationsController < ApplicationController
   private
 
   def certification_params
-    params.permit(:userId, :name)
+    params.permit(:user_id, :name)
   end
 end

@@ -23,9 +23,8 @@ describe('GET /wallets', () => {
     const EXPECTED_BODY = MatchersV3.like(expected);
 
     provider
-      .given('I have a user_id and wallet',
-        {userIdWithBalance100: userIdWithBalance100}) // TODO: is there any point of this because of the BFF & stub server?
-      .uponReceiving('a query by user_id')
+      .given('I have a userId and wallet')
+      .uponReceiving('a query by userId')
       .withRequest({
         method: 'GET',
         path: `/wallets/${userIdWithBalance100}`,
@@ -55,8 +54,7 @@ describe('PATCH /wallets', () => {
     const EXPECTED_BODY = MatchersV3.like(expected);
 
     provider
-      .given('I have a user_id and wallet',
-        {walletIdWithBalance100: userIdWithBalance100})
+      .given('I have a userId and wallet')
       .uponReceiving('a balance update')
       .withRequest({
         method: 'PATCH',
@@ -84,7 +82,7 @@ describe('PATCH /wallets', () => {
     const amount = 100;
 
     provider
-      .given('I have an non-existent user_id', {nonExistentWalletId: nonExistentWalletId})
+      .given('I have an non-existent userId')
       .uponReceiving('a payment request')
       .withRequest({
         method: 'PATCH',
@@ -106,25 +104,24 @@ describe('PATCH /wallets', () => {
 describe('POST /certifications', () => {
   it('returns status 201', async () => {
     const certificationId = "528db56a-6f84-481d-986f-069e58ea0d4a";
-    const certifiedName = 'scrumfall master name';
-    const dateCertified = '01/01/1876';
+    const name = 'scrumfall master name';
+    const date = '01/01/1876';
     const expected = {
-      certificateId: certificationId,
-      certifiedName: certifiedName,
-      dateCertified: dateCertified
+      id: certificationId,
+      name: name,
+      date: date
     };
     const EXPECTED_BODY = MatchersV3.like(expected);
 
     provider
-      .given('There is a certifications endpoint',
-        {walletIdWithBalance100: userIdWithBalance100})
+      .given('There are certifications')
       .uponReceiving('a certification request')
       .withRequest({
         method: 'POST',
         path: `/certifications`,
         body: {
-          user_id: userIdWithBalance100,
-          name: certifiedName,
+          userId: userIdWithBalance100,
+          name: name,
         }
       })
       .willRespondWith({
@@ -135,7 +132,7 @@ describe('POST /certifications', () => {
 
     return provider.executeTest(async (mockserver) => {
       const service = new CertificationService(mockserver.url);
-      const response = await service.buy(userIdWithBalance100, certifiedName)
+      const response = await service.buy(userIdWithBalance100, name)
 
       expect(response.status).toEqual(HTTP_CREATED);
       expect(response.data).toMatchObject(expected);

@@ -13,7 +13,7 @@ Pact.provider_states_for "web-api" do
     Certification.delete_all
   end
 
-  provider_state "There is a certifications endpoint" do
+  provider_state "There are certifications" do
     set_up do
     end
   end

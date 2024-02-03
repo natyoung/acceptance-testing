@@ -7,7 +7,7 @@ Application.register_provider(:clients) do
       Testing::MockHttpClient.base_uri('localhost')
       register('clients.payment', Clients::PaymentProcessor.new(Testing::MockHttpClient))
     else
-      Clients::Http.base_uri('http://localhost:9090')
+      Clients::Http.base_uri(ENV.fetch('HOST_PAYMENTS', 'http://localhost:9090'))
       register('clients.payment', Clients::PaymentProcessor.new(Clients::Http))
     end
   end

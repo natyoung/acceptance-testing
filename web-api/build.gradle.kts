@@ -11,6 +11,10 @@ java {
     sourceCompatibility = JavaVersion.VERSION_20
 }
 
+springBoot {
+    mainClass = "org.scrumfall.webapi.WebApiApplication"
+}
+
 configurations {
     compileOnly {
         extendsFrom(configurations.annotationProcessor.get())

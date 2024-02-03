@@ -26,11 +26,9 @@ public class CertificationController {
             @RequestBody CertificationPostRequest body
     ) {
         try {
-
-            final Optional<Certification> certification =
-                    service.certify(body.getUserId(), body.getName());
+            final Optional<Certification> certification = service.certify(body.getUserId(), body.getName());
             return certification
-                    .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                    .map(value -> new ResponseEntity<>(value, HttpStatus.CREATED))
                     .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -39,10 +37,9 @@ public class CertificationController {
 
     @GetMapping(value = "/certifications/price", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     public ResponseEntity<CertificationPrice> price() {
         try {
-
             final Optional<CertificationPrice> price = service.price();
             return price
                     .map(value -> new ResponseEntity<>(value, HttpStatus.OK))

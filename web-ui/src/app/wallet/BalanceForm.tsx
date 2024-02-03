@@ -4,7 +4,7 @@ import {FormEvent, useState} from "react";
 import WalletService from "@/app/lib/WalletService";
 import Error from "@/app/Error";
 
-const host: string = process.env.API_BASE_URI || 'http://localhost:8080';
+const host: string = process.env.API_BASE_URI || 'http://0.0.0.0:8080';
 
 export default function BalanceForm(props: any) {
   const updateBalance = props.updateBalance

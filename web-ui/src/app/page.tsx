@@ -13,9 +13,10 @@ export default function Home() {
           <ul className="p-2">
             <li>Output over Outcomes</li>
             <li>Accountability over Responsibility</li>
-            <li>Burning Out, Up, and Down</li>
             <li>Process over People</li>
-            <li>Surveillance over Confidence</li>
+            <li>Perpetual Crunch Time over Keeping Slack</li>
+            <li>Busywork over Creating Value</li>
+            <li>Surveillance over Trust</li>
           </ul>
           <i className="text-amber-500">
             That is, while there is value in the items on the right, we value the items on the left.

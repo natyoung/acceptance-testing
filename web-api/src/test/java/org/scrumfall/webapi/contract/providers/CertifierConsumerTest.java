@@ -48,14 +48,14 @@ public class CertifierConsumerTest {
     @Pact(provider = "certifier", consumer = "web-api")
     public RequestResponsePact certify(PactDslWithProvider builder) throws JSONException {
         return builder
-                .given("There is a certifications endpoint")
+                .given("There are certifications")
                 .uponReceiving("a certification request")
                 .path("/certifications")
                 .method("POST")
                 .headers(headers)
                 .body(
                         new PactDslJsonBody()
-                                .stringType("userId", userIdWithBalance100)
+                                .stringType("user_id", userIdWithBalance100)
                                 .stringType("name", "someone")
                 )
                 .willRespondWith()
@@ -64,9 +64,9 @@ public class CertifierConsumerTest {
                 ))
                 .status(200)
                 .body(new PactDslJsonBody()
-                        .stringType("certificateId")
-                        .stringType("dateCertified")
-                        .stringType("certifiedName")
+                        .stringType("id")
+                        .stringType("name")
+                        .stringType("date")
                 )
                 .toPact();
     }

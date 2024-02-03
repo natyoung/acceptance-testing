@@ -1,7 +1,8 @@
-# Acceptance testing with Playwright, Pact, Webmock & Mockserver
+# Playwright, Pact, Webmock & Mockserver
 
 ```bash
-PACT_FOLDER=<absolute path> ./go.sh
+PACT_FOLDER=<absolute path> ./go.sh setup
+PACT_FOLDER=<absolute path> ./go.sh test
 ```
 
 ## Project structure
@@ -33,3 +34,13 @@ PACT_FOLDER=<absolute path> ./go.sh
 
 ### PACT_FOLDER
 The directory to read and write pact files.
+
+## Run
+
+```bash
+COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose build
+```
+
+```bash
+docker-compose up
+```

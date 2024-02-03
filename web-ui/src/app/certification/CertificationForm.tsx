@@ -43,9 +43,10 @@ export default function CertificationForm(props: CertificationFormProps) {
         return;
       }
       props.setCertificate(new Certificate(
-        response.data.certificateId,
-        response.data.certifiedName,
-        response.data.dateCertified)
+        response.data.id,
+        response.data.name,
+        response.data.date
+        )
       )
     } catch (error: unknown | Error) {
       if (error instanceof Error) {

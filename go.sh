@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 if [[ -z "${PACT_FOLDER}" ]]; then
-  export PACT_FOLDER="/Users/natyoung/dev/projects/testing-1/pacts"
+  echo "PACT_FOLDER not set"
+  exit 1;
 else
   PACT_FOLDER="${PACT_FOLDER}"
 fi
@@ -14,6 +15,7 @@ d_check() {
   command -v java >/dev/null 2>&1 || { echo >&2 "java was not found.  Aborting."; exit 1; }
   command -v ruby >/dev/null 2>&1 || { echo >&2 "ruby was not found.  Aborting."; exit 1; }
   command -v docker >/dev/null 2>&1 || { echo >&2 "docker is not running.  Aborting."; exit 1; }
+  command -v docker-compose >/dev/null 2>&1 || { echo >&2 "docker-compose was not found.  Aborting."; exit 1; }
 }
 
 setup()
@@ -91,7 +93,7 @@ run_pact_stubs()
   docker run --rm -t --name pact-stubs -p 8080:8080 -v "${PACT_FOLDER}:/app/pacts" pactfoundation/pact-stub-server -p 8080 -d pacts --cors &
 }
 
-run()
+run_ui()
 {
   d_check
   generate_pacts
@@ -163,6 +165,7 @@ cat <<EOF
     setup               setup
     generate_pacts      generate the contracts to PACT_FOLDER
     test                run all tests
+    run_ui              run ui on pact stubs
 
 EOF
 }
@@ -189,8 +192,8 @@ run_pact_stubs
 generate_pacts)
 generate_pacts
 ;;
-run)
-run
+run_ui)
+run_ui
 ;;
 *)
 print_usage

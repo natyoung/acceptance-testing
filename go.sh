@@ -33,6 +33,8 @@ setup()
   ./gradlew clean
   cd ../wallet
   bundle install
+  cd ../certifier
+  bundle install
   cd ..
 }
 

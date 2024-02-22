@@ -11,7 +11,7 @@ PACT_FOLDER=<absolute path> ./go.sh test
 ## Project structure
 
     go.sh                        # Scripts to run the tests
-    ├── acceptance               # Acceptance Tests with Playwright/Python
+    ├── ui_smoke                 # UI smoke tests with Playwright/Python
     │   ├── test_cases           # Test cases derived from AC's
     │   ├── dsl                  # What
     │   ├── drivers              # How

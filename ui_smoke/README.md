@@ -1,4 +1,4 @@
-# Acceptance Tests
+# UI Smoke Tests
 
 ```
 User story -> AC -> Test Cases -> DSL -> Drivers -> System under test

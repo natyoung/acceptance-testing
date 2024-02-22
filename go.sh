@@ -22,7 +22,7 @@ setup()
 {
   d_check
   docker pull pactfoundation/pact-stub-server
-  cd ./acceptance
+  cd ./ui_smoke
   python3 -m pip install --user virtualenv
   python3 -m venv env
   pip3 install -r requirements.txt
@@ -46,7 +46,7 @@ test_client()
   local client_pid=$!
   ../waitfor.sh http://localhost:3000 -t 20 -- echo "client started"
   ../waitfor.sh http://localhost:8080/wallets/ea4ceefe-cfe6-49e8-a36d-1a889c780bb4 -t 20 -- echo "stubs started"
-  cd ../acceptance 
+  cd ../ui_smoke
   pytest
   cd ..
   kill ${client_pid}
